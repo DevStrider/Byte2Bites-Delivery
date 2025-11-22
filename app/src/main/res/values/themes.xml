@@ -1,0 +1,39 @@
+<resources>
+
+    <style name="Theme.Byte2BitesDelivery" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/bb_primary_blue</item>
+        <item name="colorPrimaryVariant">@color/bb_primary_blue_dark</item>
+        <item name="colorOnPrimary">@color/bb_on_primary</item>
+
+        <!-- Secondary / accent (gold) -->
+        <item name="colorSecondary">@color/bb_gold</item>
+        <item name="colorSecondaryVariant">@color/bb_gold_dark</item>
+        <item name="colorOnSecondary">@color/bb_on_background</item>
+
+        <!-- Backgrounds -->
+        <!-- This is enough, remove the plain 'colorBackground' line -->
+        <item name="android:colorBackground">@color/bb_background</item>
+        <item name="android:windowBackground">@color/bb_background</item>
+
+        <!-- Surfaces -->
+        <item name="colorSurface">@color/bb_surface</item>
+        <item name="colorOnSurface">@color/bb_on_surface</item>
+
+        <!-- Icon & control tint -->
+        <item name="android:colorControlNormal">@color/bb_primary_blue</item>
+        <item name="colorControlNormal">@color/bb_primary_blue</item>
+        <item name="colorControlActivated">@color/bb_gold</item>
+
+        <!-- Default MaterialButton style -->
+        <item name="materialButtonStyle">@style/Widget.Byte2Bites.Button.Primary</item>
+    </style>
+
+    <style name="Widget.Byte2Bites.Button.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+</resources>
