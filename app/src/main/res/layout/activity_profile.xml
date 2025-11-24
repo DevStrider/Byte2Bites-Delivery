@@ -8,14 +8,27 @@
     android:background="@color/bb_page_background_blue"
     tools:context=".ProfileActivity">
 
+    <!-- Back button -->
+    <ImageButton
+        android:id="@+id/ivBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="back"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <!-- Scrollable profile content -->
     <ScrollView
         android:id="@+id/scrollProfile"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintTop_toBottomOf="@id/ivBack"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -47,7 +60,7 @@
                 android:textColor="@color/text_primary_dark"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                tools:text="Abdelrahman Mansour" />
+                tools:text="Delivery User" />
 
             <!-- Email -->
             <TextView
@@ -60,121 +73,17 @@
                 android:textSize="16sp"
                 tools:text="user@example.com" />
 
-            <!-- Menu items -->
-            <LinearLayout
-                android:layout_width="match_parent"
+            <!-- Points -->
+            <TextView
+                android:id="@+id/tvPoints"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="32dp">
-
-                <!-- Update username & phone -->
-                <RelativeLayout
-                    android:id="@+id/cardChangeUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@drawable/profile_menu_item_background"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:paddingHorizontal="20dp"
-                    android:layout_marginBottom="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_edit"
-                        android:layout_centerVertical="true"
-                        app:tint="@color/bb_primary_blue" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Update Username &amp; Phone"
-                        android:layout_marginStart="48dp"
-                        android:layout_centerVertical="true"
-                        android:textSize="16sp"
-                        android:textColor="@color/text_primary_dark" />
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_arrow_forward"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        app:tint="@color/text_secondary_dark" />
-                </RelativeLayout>
-
-                <!-- Addresses -->
-                <RelativeLayout
-                    android:id="@+id/cardAddresses"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@drawable/profile_menu_item_background"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:paddingHorizontal="20dp"
-                    android:layout_marginBottom="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_location"
-                        android:layout_centerVertical="true"
-                        app:tint="@color/bb_primary_blue" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="My Addresses"
-                        android:layout_marginStart="48dp"
-                        android:layout_centerVertical="true"
-                        android:textSize="16sp"
-                        android:textColor="@color/text_primary_dark" />
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_arrow_forward"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        app:tint="@color/text_secondary_dark" />
-                </RelativeLayout>
-
-                <!-- Change password -->
-                <RelativeLayout
-                    android:id="@+id/cardChangePassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@drawable/profile_menu_item_background"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:paddingHorizontal="20dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_lock"
-                        android:layout_centerVertical="true"
-                        app:tint="@color/bb_primary_blue" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Change Password"
-                        android:layout_marginStart="48dp"
-                        android:layout_centerVertical="true"
-                        android:textSize="16sp"
-                        android:textColor="@color/text_primary_dark" />
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_arrow_forward"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        app:tint="@color/text_secondary_dark" />
-                </RelativeLayout>
-
-            </LinearLayout>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/bb_primary_blue_dark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="45 pts" />
 
             <!-- Logout button -->
             <Button
@@ -188,110 +97,7 @@
                 android:textColor="@color/white"
                 android:backgroundTint="@color/bb_error" />
 
-            <!-- Delete account -->
-            <TextView
-                android:id="@+id/tvDeleteAccount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Delete Account"
-                android:textColor="@color/text_secondary_dark"
-                android:layout_gravity="center_horizontal"
-                android:textSize="16sp"
-                android:padding="16dp"
-                android:layout_marginTop="8dp" />
-
         </LinearLayout>
     </ScrollView>
-
-    <!-- Bottom navigation -->
-    <LinearLayout
-        android:id="@+id/bottomNav"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/bb_surface"
-        android:paddingVertical="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <!-- Home -->
-        <LinearLayout
-            android:id="@+id/navHome"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingVertical="4dp"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_home_nav"
-                app:tint="@color/text_secondary_dark" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Home"
-                android:textColor="@color/text_secondary_dark"
-                android:textSize="12sp"/>
-        </LinearLayout>
-
-        <!-- Orders -->
-        <LinearLayout
-            android:id="@+id/navOrders"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingVertical="4dp"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_orders"
-                app:tint="@color/text_secondary_dark" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Orders"
-                android:textColor="@color/text_secondary_dark"
-                android:textSize="12sp"/>
-        </LinearLayout>
-
-        <!-- Profile (active) -->
-        <LinearLayout
-            android:id="@+id/navProfile"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingVertical="4dp"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_profile_placeholder"
-                app:tint="@color/bb_primary_blue" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Profile"
-                android:textColor="@color/bb_primary_blue"
-                android:textSize="12sp"/>
-        </LinearLayout>
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.byte2bites.app
+package com.byte2bites.delivery
 
 import android.content.Intent
 import android.os.Bundle
@@ -20,22 +20,18 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Fullscreen feel for auth
         supportActionBar?.hide()
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
 
-        binding.ivBack.setOnClickListener {
-            finish()
-        }
+        binding.ivBack.setOnClickListener { finish() }
 
-        binding.btnLogin.setOnClickListener {
-            loginUser()
-        }
+        binding.btnLogin.setOnClickListener { loginUser() }
 
+        // Forgot password (optional – you can reuse buyer flow)
         binding.tvForgotPassword.setOnClickListener {
-            startActivity(Intent(this, ForgotPasswordActivity::class.java))
+            Toast.makeText(this, "Use the Buyer app to reset password.", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -53,21 +49,16 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val uid = auth.currentUser?.uid
                     if (uid == null) {
-                        Toast.makeText(
-                            this,
-                            "Login failed: Could not get user details",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        Toast.makeText(this, "Login failed: no user", Toast.LENGTH_LONG).show()
                         return@addOnCompleteListener
                     }
 
                     // Ensure this user is a Buyer
                     database.reference.child("Buyers").child(uid).get()
-                        .addOnSuccessListener { dataSnapshot ->
-                            if (dataSnapshot.exists()) {
-                                Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT)
-                                    .show()
-                                val intent = Intent(this, HomeActivity::class.java)
+                        .addOnSuccessListener { snap ->
+                            if (snap.exists()) {
+                                Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this, DeliveriesActivity::class.java)
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)
@@ -75,16 +66,16 @@ class LoginActivity : AppCompatActivity() {
                             } else {
                                 Toast.makeText(
                                     this,
-                                    "Login failed: This account is not a buyer account.",
+                                    "This account is not a buyer account.",
                                     Toast.LENGTH_LONG
                                 ).show()
                                 auth.signOut()
                             }
                         }
-                        .addOnFailureListener { exception ->
+                        .addOnFailureListener { e ->
                             Toast.makeText(
                                 this,
-                                "Login failed: ${exception.message}",
+                                "Login failed: ${e.message}",
                                 Toast.LENGTH_LONG
                             ).show()
                             auth.signOut()

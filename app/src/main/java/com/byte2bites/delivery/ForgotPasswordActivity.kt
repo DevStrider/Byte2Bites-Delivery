@@ -1,11 +1,14 @@
-package com.byte2bites.app
+package com.byte2bites.delivery
 
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.byte2bites.app.databinding.ActivityForgotPasswordBinding
+import com.byte2bites.delivery.databinding.ActivityForgotPasswordBinding
 import com.google.firebase.auth.FirebaseAuth
+import kotlin.text.isEmpty
+import kotlin.text.trim
+import kotlin.toString
 
 class ForgotPasswordActivity : AppCompatActivity() {
 

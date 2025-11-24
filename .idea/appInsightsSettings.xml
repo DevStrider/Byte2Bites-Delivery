@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.byte2bites.delivery" />
+                  <option name="mobileSdkAppId" value="1:843218224671:android:dccc1fcfbd7cfe75c9372a" />
+                  <option name="projectId" value="foody-firebase-1a2d9" />
+                  <option name="projectNumber" value="843218224671" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
