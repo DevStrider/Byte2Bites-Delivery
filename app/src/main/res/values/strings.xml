@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Byte2Bites-Delivery</string>
-    <string name="currency_symbol">$</string> <!--E£-->
+    <string name="currency_symbol">E£</string> <!--E£-->
     <string name="app_name_delivery">Byte2Bites Delivery</string>
 </resources>
