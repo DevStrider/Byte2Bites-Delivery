@@ -12,6 +12,7 @@ data class Order(
     val timestamp: Long = 0L,
     val deliveredBy: String = "",
     val deliveredAt: Long = 0L,
+    val sellerDeliver: String = "",   // "Yes" or "No"
 
     // Address fields (pulled from Buyers/{uid}/address)
     var apartmentNumber: String = "",

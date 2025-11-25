@@ -238,8 +238,10 @@ class OrderDeliveryService {
                             orderSnapshot.child("deliveredBy").getValue(String::class.java)
                         val status =
                             orderSnapshot.child("status").getValue(String::class.java) ?: ""
+                        val sellerDeliver =
+                            orderSnapshot.child("sellerDeliver").getValue(String::class.java) ?: ""
 
-                        if (deliveredBy == userId && status != "DELIVERED") {
+                        if (deliveredBy == userId && status != "DELIVERED" && sellerDeliver == "No") {
                             activeOrder = parseOrderFromSnapshot(orderSnapshot)
                             activeOrder?.sellerName = sellerName
                             break
@@ -285,7 +287,8 @@ class OrderDeliveryService {
                 status = orderSnapshot.child("status").getValue(String::class.java) ?: "PENDING",
                 timestamp = orderSnapshot.child("timestamp").getValue(Long::class.java) ?: 0L,
                 deliveredBy = orderSnapshot.child("deliveredBy").getValue(String::class.java) ?: "",
-                deliveredAt = orderSnapshot.child("deliveredAt").getValue(Long::class.java) ?: 0L
+                deliveredAt = orderSnapshot.child("deliveredAt").getValue(Long::class.java) ?: 0L,
+                sellerDeliver = orderSnapshot.child("sellerDeliver").getValue(String::class.java) ?: ""
             )
         } catch (e: Exception) {
             Log.e("OrderDelivery", "Error parsing order: ${e.message}")

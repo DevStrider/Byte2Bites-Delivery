@@ -122,35 +122,48 @@ class DeliveriesAdapter(
         // 2) Order assigned to this driver
         if (isAssignedToMe) {
             when (statusUpper) {
-                // Waiting / preparing → disabled button
+                // Waiting / preparing → show "Delivered" button but disabled
                 "WAITING FOR SELLER APPROVAL",
                 "WAITING_APPROVAL",
                 "PENDING",
                 "PREPARING" -> {
-                    b.btnAcceptOrder.visibility = View.VISIBLE
-                    b.btnAcceptOrder.isEnabled = false
-                    b.btnAcceptOrder.text = "Waiting for order to be ready"
-                    b.btnAcceptOrder.alpha = 0.6f
+                    b.btnDeliverOrder.visibility = View.VISIBLE
+                    b.btnDeliverOrder.isEnabled = false
+                    b.btnDeliverOrder.text = "Waiting for order to be ready"
+                    b.btnDeliverOrder.alpha = 0.6f
                 }
 
                 // Ready to start delivery
                 "READY FOR DELIVERING",
                 "READY",
-                "READY FOR PICKUP/DELIVERING" -> {
+                "READY FOR PICKUP/DELIVERING",
+                "ACCEPTED",
+                "ASSIGNED" -> {
                     b.btnDeliverOrder.visibility = View.VISIBLE
                     b.btnDeliverOrder.isEnabled = true
-                    b.btnDeliverOrder.text = "Start delivery"
+                    b.btnDeliverOrder.text = "Mark Delivered"
                     b.btnDeliverOrder.alpha = 1f
-                    b.btnDeliverOrder.setOnClickListener { onStartDelivery(order) }
+                    b.btnDeliverOrder.setOnClickListener { onDeliverOrder(order) }
                 }
 
                 // Already delivering → can mark delivered
                 "DELIVERING" -> {
                     b.btnDeliverOrder.visibility = View.VISIBLE
                     b.btnDeliverOrder.isEnabled = true
-                    b.btnDeliverOrder.text = "Mark delivered"
+                    b.btnDeliverOrder.text = "Mark Delivered"
                     b.btnDeliverOrder.alpha = 1f
                     b.btnDeliverOrder.setOnClickListener { onDeliverOrder(order) }
+                }
+
+                // For any other status where order is assigned to me, show delivered button
+                else -> {
+                    if (!isDelivered) {
+                        b.btnDeliverOrder.visibility = View.VISIBLE
+                        b.btnDeliverOrder.isEnabled = true
+                        b.btnDeliverOrder.text = "Mark Delivered"
+                        b.btnDeliverOrder.alpha = 1f
+                        b.btnDeliverOrder.setOnClickListener { onDeliverOrder(order) }
+                    }
                 }
             }
         }

@@ -110,6 +110,7 @@ class OrderDetailsActivity : AppCompatActivity() {
             content.addView(makeText("Order ID: ${order.orderId}", 16f, bold = true))
             content.addView(makeText("Buyer: ${order.buyerName}", 16f))
             content.addView(makeText("Restaurant: ${order.sellerName}", 16f))
+            content.addView(makeText("Seller Delivery: ${order.sellerDeliver}", 16f))
 
             val address = """
                 Apartment: ${order.apartmentNumber}

@@ -108,6 +108,7 @@ class DeliveriesActivity : AppCompatActivity() {
     /**
      * Rules:
      *  - Only DELIVERY orders.
+     *  - Only orders where sellerDeliver is "No"
      *  - Do NOT show if seller has not accepted yet:
      *      "Waiting for seller approval" / "Waiting_approval" / "Pending".
      *  - Do NOT show rejected orders.
@@ -117,6 +118,9 @@ class DeliveriesActivity : AppCompatActivity() {
      *      * Your own orders that are ACCEPTED / DELIVERING / DELIVERED.
      */
     private fun shouldShowOrder(order: Order): Boolean {
+        // Only show orders where sellerDeliver is "No"
+        if (order.sellerDeliver != "No") return false
+
         if (order.deliveryType != "DELIVERY") return false
 
         val statusUpper = order.status.uppercase()
@@ -175,7 +179,8 @@ class DeliveriesActivity : AppCompatActivity() {
                 status = orderSnapshot.child("status").getValue(String::class.java) ?: "PENDING",
                 timestamp = orderSnapshot.child("timestamp").getValue(Long::class.java) ?: 0L,
                 deliveredBy = orderSnapshot.child("deliveredBy").getValue(String::class.java) ?: "",
-                deliveredAt = orderSnapshot.child("deliveredAt").getValue(Long::class.java) ?: 0L
+                deliveredAt = orderSnapshot.child("deliveredAt").getValue(Long::class.java) ?: 0L,
+                sellerDeliver = orderSnapshot.child("sellerDeliver").getValue(String::class.java) ?: ""
             )
         } catch (e: Exception) {
             null
